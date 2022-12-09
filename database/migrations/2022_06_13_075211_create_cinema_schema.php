@@ -36,7 +36,26 @@ class CreateCinemaSchema extends Migration
      */
     public function up()
     {
-        throw new \Exception('implement in coding task 4, you can ignore this exception if you are just running the initial migrations.');
+        Schema::create('films', function (Blueprint $table) {
+            $table->id();
+            $table->string('name');
+        });
+
+        Schema::create('film_times', function (Blueprint $table) {
+            $table->id();
+            $table->string('film_id');
+            $table->timestamp('date');
+            $table->timestamp('time');
+            $table->string('price');
+        });
+
+        Schema::table('film_times', function (Blueprint $table) {
+            $table->foreign('film_id')
+                ->references('id')
+                ->on('films')
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
+        });
     }
 
     /**

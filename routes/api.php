@@ -17,3 +17,8 @@ use Illuminate\Support\Facades\Route;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+
+Route::get('/events', 'App\Http\Controllers\Api\EventsController@getEventsWithWorkshops');
+Route::get('/futureevents', 'App\Http\Controllers\Api\EventsController@getFutureEventsWithWorkshops');
+Route::get('/menu', 'App\Http\Controllers\Api\MenuController@getMenuItems');
